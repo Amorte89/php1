@@ -1,143 +1,100 @@
 <?php
-// задание 1
 
-$c = 3;
-$b = 5;
+//задание 1
 
-if ($c >= 0 & $b >= 0) {
+$a=0;
+while($a++ < 100) if($a%3 == 0)
+    echo $a.'<br>';
 
-    echo $c-$b.'<br>';}
 
-    elseif ($c < 0 & $b < 0) {
+//задание 2
 
-    echo $c*$b.'<br>';}
+$c=0;
+$d=10;
 
-    elseif ($c >= 0 & $b < 0 ^ $c < 0 & $b >= 0) {
-
-    echo $c+$b.'<br>';}
-
-// задание 2
-
-$c = 3;
-switch ($c)
+function num($c)
 {
-    case 0:
-        echo 0;
-    case 1:
-        echo 1;
-    case 2:
-        echo 2 ;
-    case 3:
-        echo 3;
-    case 4:
-        echo 4;
-    case 5:
-        echo 5 ;
-    case 6:
-        echo 6;
-    case 7:
-        echo 7;
-    case 8:
-        echo 8;
-    case 9:
-        echo 9;
-    case 10:
-        echo 10;
-    case 11:
-        echo 11;
-    case 12:
-        echo 12;
-    case 13:
-        echo 13;
-    case 14:
-        echo 14;
-    case 15:
-        echo 15;
-};
-echo '<br>';
+    if ($c == 0)
+        echo "$c" . ' - это ноль<br>' ;
+    elseif ($c % 2 != 0)
+        echo "$c" . ' - нечетное число<br>';
+    elseif ($c % 2 == 0)
+        echo "$c" . ' - четное число<br>';
+
+}
+
+do
+{
+    num($c);
+    $c++;
+} while ($c <= $d);
+
 
 // задание 3
 
-$arg1 = 4;
-$arg2 = 5;
+$reg = ['Московская область' => ['Москва', 'Зеленоград', 'Клин'],
+        'Ленинградская область' => ['Санкт-Петербург', 'Всеволожск', 'Павловск'],
+        'Липецкая Область' => ['Данков', 'Задонск', 'Лебедянь'],
+        'Курская Область' => ['Курск', 'Курчатов', 'Льгов'],
+        'Кемеровская Область' => ['Осинники', 'Прокопьевск', 'Мыски']];
+foreach ($reg as $key => $value) {
+    echo '<br>'.$key.':<br>';
+    foreach ($value as $key => $value) {
+        echo $value.'<br>';
+    }
+}
 
-function sum($arg1, $arg2) {
-    return ($arg1 + $arg2);
-};
+// задание 8
 
-function sub($arg1, $arg2) {
-    return ($arg1 - $arg2);
-};
-
-function mul($arg1, $arg2) {
-    return ($arg1 * $arg2);
-};
-
-function del($arg1, $arg2) {
-    return ($arg1 / $arg2);
-};
-
-echo sum(4,5).'<br>';
-echo sub(4,5).'<br>';
-echo mul(4,5).'<br>';
-echo del(4,5).'<br>';
+echo '<br>';
+foreach ($reg as $key => $value) {
+    echo '<br>'.$key.':<br>';
+    foreach ($value as $key => $value) {
+        if(mb_substr($value, 0, 1) == 'К') {
+            echo $value.'<br>';
+        }
+    }
+}
 
 // задание 4
+$str = "привет мир!";
 
+function translit($string) {
 
-function mathOperation($arg1, $arg2, $operation) {
-    switch ($operation){
-        case "sum":
-            $operation = sum($arg1, $arg2);
-            break;
-        case "sub":
-            $operation = sub($arg1, $arg2);
-            break;
-        case "mul":
-            $operation = mul($arg1, $arg2);
-            break;
-        case "del":
-            $operation = del($arg1, $arg2);
-            break;
-        }
+$alphabet = [ 'а' => 'a',   'б' => 'b',   'в' => 'v',
+            'г' => 'g',   'д' => 'd',   'е' => 'e',
+            'ё' => 'e',   'ж' => 'zh',  'з' => 'z',
+            'и' => 'i',   'й' => 'y',   'к' => 'k',
+            'л' => 'l',   'м' => 'm',   'н' => 'n',
+            'о' => 'o',   'п' => 'p',   'р' => 'r',
+            'с' => 's',   'т' => 't',   'у' => 'u',
+            'ф' => 'f',   'х' => 'h',   'ц' => 'c',
+            'ч' => 'ch',  'ш' => 'sh',  'щ' => 'sch',
+            'ь' => '\'',  'ы' => 'y',   'ъ' => '\'',
+            'э' => 'e',   'ю' => 'yu',  'я' => 'ya'];
 
-return $operation;
+    return strtr($string, $alphabet);}
 
+function str2url($str) {
+    $str = translit($str);
+    return $str;
 }
 
-echo mathOperation(4,5,"del");
+echo translit($str).'<br>';
 
-// задание 5 в файле date.php
+// задание 5
 
-// задание 6
+$string = 'моя строка с разделителями';
+$arrayDelim = explode(' ', $string);
+$gluedString = join('_', $arrayDelim);
+echo $gluedString.'<br>';
 
-function power($val, $pow){
-    if($pow == 0){
-        return 1;
-    }
-    elseif ($pow < 0) {echo "Отрицательная степень!";
-    }
-    else {
-        return $val * power($val, $pow-1);}
-}
+// задание 6 в файле data.php
 
-echo power(3,2)."<br>";
+// задание 7
 
-// задание 7. Честно признаюсь - нашел в интернете функцию - немного её исправил и готово :) Надеюсь сможете объяснить как return работает на уроке, ибо я не совсем врубился.
+for ($n = 0; $n < 10; print $n++) {};
 
-function worldTime($num,$period){
+// задание 9
 
-$numret = $num;
-        $hour = array("час","часа","часов");
-        $min = array("минуту","минуты","минут");
-        if ($period=='hour') $titles = $hour;
-        if ($period=='min') $titles = $min;
-        $cases = array (2, 0, 1, 1, 1, 2);
-        return $numret." ".$titles[ ($num%100>4 && $num%100<20)? 2 : $cases[min($num%10, 5)] ];
 
-    }
-
-$num = date("G", time());
-    echo worldTime($num,'hour')." ";
-$num = date("i", time());
-    echo worldTime($num,'min')." ";
